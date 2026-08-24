@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Polar Pickleball | Ottawa's Indoor Coalition</title>
+    <style>
+        /* Base Reset & Typography */
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
+        body { color: #111111; line-height: 1.6; background-color: #fafafa; }
+        h1, h2, h3, h4 { font-weight: 700; line-height: 1.1; letter-spacing: -0.03em; }
+        p { margin-bottom: 1rem; color: #555555; }
+        
+        /* Sleek, Urgent, Minimalist Color Palette */
+        :root {
+            --bg-dark: #0a0a0a;
+            --text-light: #ffffff;
+            --text-muted: #a3a3a3;
+            --accent-urgent: #d9381e; 
+            --accent-urgent-hover: #b52b15;
+            --form-bg: #ffffff;
+            --border-color: #e5e5e5;
+            --btn-dark: #111111;
+            --btn-dark-hover: #333333;
+        }
+
+        /* Navigation - Ultra Minimal */
+        nav { display: flex; justify-content: space-between; align-items: center; padding: 1.5rem 5%; background-color: var(--bg-dark); color: var(--text-light); border-bottom: 1px solid #222; position: sticky; top: 0; z-index: 100;}
+        .logo { font-size: 1.25rem; font-weight: 800; letter-spacing: -0.02em; color: var(--text-light); text-decoration: none; text-transform: uppercase; }
+        .nav-links a { color: var(--text-muted); text-decoration: none; margin-left: 2.5rem; font-weight: 500; font-size: 0.875rem; text-transform: uppercase; letter-spacing: 0.05em; transition: color 0.2s; }
+        .nav-links a:hover { color: var(--text-light); }
+
+        /* Hero Section (Above the Fold Split) with High Contrast Image Overlay */
+        .hero { 
+            display: flex; 
+            flex-wrap: wrap; 
+            padding: 5rem 5%; 
+            background: linear-gradient(to right, rgba(10, 10, 10, 0.95) 30%, rgba(10, 10, 10, 0.7)), url('https://images.unsplash.com/photo-1622228837656-3bb1d977e231?auto=format&fit=crop&q=80') center/cover;
+            color: var(--text-light); 
+            min-height: 85vh; 
+            align-items: center; 
+            gap: 4rem; 
+        }
+        .hero-content { flex: 1; min-width: 300px; }
+        .hero-content h1 { font-size: clamp(2.5rem, 5vw, 4.5rem); margin-bottom: 1.5rem; color: #ffffff; }
+        .hero-content h2 { font-size: 1.25rem; font-weight: 400; margin-bottom: 2rem; color: var(--text-muted); line-height: 1.6; }
+        .hero-content p { color: #cccccc; font-size: 1.1rem; }
+        
+        /* Survey / Intake Box */
+        .survey-container { flex: 1; min-width: 320px; max-width: 500px; background: var(--form-bg); border-radius: 4px; padding: 3rem 2.5rem; box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5); color: #111111; position: relative; }
+        .survey-header { text-align: left; margin-bottom: 2rem; padding-bottom: 1rem; border-bottom: 2px solid #111; }
+        .survey-header h3 { font-size: 1.5rem; margin-bottom: 0.5rem; text-transform: uppercase; }
+        .survey-header p { font-size: 0.875rem; margin: 0; color: #555; font-weight: 500; }
+        
+        /* Survey Logic States */
+        .survey-branch { display: none; animation: fadeIn 0.3s ease-in; }
+        .survey-branch.active { display: block; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
+
+        /* Form Elements */
+        .form-group { margin-bottom: 1.5rem; }
+        label { display: block; font-weight: 600; margin-bottom: 0.5rem; font-size: 0.85rem; color: #111; text-transform: uppercase; letter-spacing: 0.02em; }
+        input[type="text"], input[type="email"], select { width: 100%; padding: 0.875rem; border: 1px solid var(--border-color); border-radius: 2px; font-size: 1rem; background-color: #fafafa; transition: border-color 0.2s; }
+        input[type="text"]:focus, input[type="email"]:focus, select:focus { outline: none; border-color: #111; background-color: #fff; }
+        .radio-group label { font-weight: 400; display: flex; align-items: center; gap: 0.75rem; cursor: pointer; margin-bottom: 0.75rem; text-transform: none; letter-spacing: normal; font-size: 0.95rem; }
+        
+        /* Buttons */
+        .btn { display: inline-block; width: 100%; padding: 1.125rem; font-size: 0.875rem; font-weight: 700; text-align: center; text-transform: uppercase; letter-spacing: 0.05em; border: none; border-radius: 2px; cursor: pointer; transition: all 0.2s; }
+        .btn-primary { background-color: var(--btn-dark); color: white; }
+        .btn-primary:hover { background-color: var(--btn-dark-hover); }
+        .btn-action { background-color: var(--accent-urgent); color: white; }
+        .btn-action:hover { background-color: var(--accent-urgent-hover); }
+        .btn-outline { background-color: transparent; border: 1px solid var(--border-color); color: #111; margin-bottom: 0.75rem; text-align: left; padding: 1.25rem 1.5rem; }
+        .btn-outline:hover { border-color: #111; background-color: #f5f5f5; }
+        .btn-back { background: none; border: none; color: #888; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em; cursor: pointer; display: flex; align-items: center; gap: 0.25rem; margin-bottom: 1.5rem; padding: 0; }
+        .btn-back:hover { color: #111; }
+
+        /* Section 2: Reality Check (Data) */
+        .stats { padding: 6rem 5%; background: white; text-align: left; }
+        .stats-header { max-width: 600px; margin-bottom: 4rem; }
+        .stats-header h2 { font-size: 2.5rem; margin-bottom: 1rem; text-transform: uppercase; }
+        .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 4rem; border-top: 1px solid var(--border-color); padding-top: 4rem; }
+        .stat-card { padding: 0; }
+        .stat-number { font-size: 4rem; font-weight: 800; color: #111; margin-bottom: 1rem; line-height: 1; letter-spacing: -0.05em; }
+        .stat-number span { font-size: 2rem; color: #888; }
+        .stat-card p strong { display: block; margin-bottom: 0.5rem; color: #111; font-size: 1.1rem; }
+        
+        /* Section 3: Coalition */
+        .coalition { padding: 6rem 5%; background-color: #111; color: white; }
+        .coalition-content { max-width: 800px; margin: 0 auto; text-align: left; }
+        .coalition-content h2 { font-size: 2.5rem; margin-bottom: 1.5rem; text-transform: uppercase; }
+        .coalition-content p { font-size: 1.25rem; color: #aaa; line-height: 1.8; }
+        .coalition-content strong { color: white; }
+
+        /* Footer */
+        footer { padding: 4rem 5%; background: var(--bg-dark); color: #888; border-top: 1px solid #222; }
+        .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 2rem; margin-bottom: 2rem; }
+        .footer-col h4 { color: white; margin-bottom: 1rem; text-transform: uppercase; font-size: 0.9rem; }
+        footer a { color: #888; text-decoration: none; transition: color 0.2s; display: block; margin-bottom: 0.5rem; font-size: 0.875rem; }
+        footer a:hover { color: white; }
+        .trust-badges { display: flex; gap: 1rem; margin-top: 1rem; color: #555; font-size: 0.75rem; text-transform: uppercase; font-weight: 700; }
+        .footer-bottom { text-align: left; font-size: 0.75rem; border-top: 1px solid #222; padding-top: 2rem; margin-top: 2rem; display: flex; justify-content: space-between; }
+        
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .hero { padding: 4rem 5%; flex-direction: column; }
+            .hero-content h1 { font-size: 2.5rem; }
+            .survey-container { width: 100%; max-width: 100%; padding: 2rem 1.5rem; }
+            .stats-grid { padding-top: 2rem; gap: 2rem; }
+            .footer-bottom { flex-direction: column; gap: 1rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <a href="#" class="logo">Polar Pickleball</a>
+        <div class="nav-links">
+            <a href="#problem">The Problem</a>
+            <a href="#solution">The Solution</a>
+            <a href="#contact">Contact</a>
+        </div>
+    </nav>
+
+    <header class="hero">
+        <div class="hero-content">
+            <h1>Ottawa has a Pickleball Crisis. The City Cannot Solve It Alone.</h1>
+            <h2>The sport is growing at <strong>37% every year</strong>, but Ottawa has only <strong>ONE</strong> new public indoor facility planned for the next decade. For six months of the year, our outdoor courts are unusable, and players are trapped fighting for scraps of time in shared community gyms.</h2>
+            <p>It’s time to stop waiting and start building. Polar Pickleball is forming a coalition of players, property developers, and investors to unlock innovative partnerships and shared commercial spaces. We have the demand. We need the space. Tell us how you fit into the solution.</p>
+        </div>
+
+        <div class="survey-container">
+            <!-- Initial Hook -->
+            <div id="initial-hook" class="survey-branch active">
+                <div class="survey-header">
+                    <h3>What best describes you?</h3>
+                    <p>Select your role below to help us map Ottawa’s indoor pickleball future.</p>
+                </div>
+                <button class="btn btn-outline" onclick="showBranch('branch-player')">Player, Coach, or League Organizer</button>
+                <button class="btn btn-outline" onclick="showBranch('branch-investor')">Investor / Corporate Sponsor</button>
+            </div>
+
+            <!-- Branch 1: Players, Coaches & Leagues -->
+            <div id="branch-player" class="survey-branch">
+                <button class="btn-back" onclick="resetSurvey()">← Return</button>
+                <h3 style="margin-bottom: 1.5rem; font-weight: 700; text-transform: uppercase;">Demand Aggregation</h3>
+                <form onsubmit="submitForm(event)">
+                    <input type="hidden" name="form_type" value="Player">
+                    <div class="form-group radio-group">
+                        <label style="font-weight: 600; text-transform: uppercase; font-size: 0.85rem; letter-spacing: 0.02em;">How would you describe your involvement?</label>
+                        <label><input type="radio" name="Involvement" value="Casual Player" required> Casual Player</label>
+                        <label><input type="radio" name="Involvement" value="Competitive / Tournament Player"> Competitive / Tournament Player</label>
+                        <label><input type="radio" name="Involvement" value="Coach / Instructor"> Coach / Instructor</label>
+                        <label><input type="radio" name="Involvement" value="League Organizer"> League Organizer</label>
+                    </div>
+                    <div class="form-group">
+                        <label>What is your primary postal code?</label>
+                        <p style="font-size: 0.75rem; color: #888; margin-top: -0.25rem;">(Help us map demand hotspots)</p>
+                        <input type="text" name="Postal Code" placeholder="e.g. K1S" required>
+                    </div>
+                    <div class="form-group">
+                        <label>How many hours of play do you lose per week due to lack of facilities?</label>
+                        <select name="Hours Lost" required>
+                            <option value="">Select lost hours...</option>
+                            <option>1 - 3 hours</option>
+                            <option>4 - 6 hours</option>
+                            <option>7+ hours</option>
+                        </select>
+                    </div>
+                    <div class="form-group radio-group">
+                        <label style="font-weight: 600; text-transform: uppercase; font-size: 0.85rem; letter-spacing: 0.02em; line-height: 1.4;">If a dedicated, year-round indoor facility opened in your quadrant, what is your preferred access model?</label>
+                        <label><input type="radio" name="Access Model" value="Monthly Premium Membership" required> Monthly Premium Membership</label>
+                        <label><input type="radio" name="Access Model" value="Pay-as-you-play / Court Rentals"> Pay-as-you-play / Court Rentals</label>
+                        <label><input type="radio" name="Access Model" value="Community-subsidized drop-in"> Community-subsidized drop-in</label>
+                    </div>
+                    <div class="form-group">
+                        <label>Name</label>
+                        <input type="text" name="Name" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Contact Email</label>
+                        <input type="email" name="Email" required>
+                    </div>
+                    <button type="submit" class="btn btn-action">Add My Voice to the Coalition</button>
+                </form>
+            </div>
+
+            <!-- Branch 2: Investors / Corporate Sponsors -->
+            <div id="branch-investor" class="survey-branch">
+                <button class="btn-back" onclick="resetSurvey()">← Return</button>
+                <h3 style="margin-bottom: 1.5rem; font-weight: 700; text-transform: uppercase;">Capital Partners</h3>
+                <form onsubmit="submitForm(event)">
+                    <input type="hidden" name="form_type" value="Investor">
+                    <div class="form-group radio-group">
+                        <label style="font-weight: 600; text-transform: uppercase; font-size: 0.85rem; letter-spacing: 0.02em;">What is your primary interest in indoor pickleball infrastructure?</label>
+                        <label><input type="radio" name="Strategic Interest" value="Direct Equity Investment" required> Direct Equity Investment</label>
+                        <label><input type="radio" name="Strategic Interest" value="Real Estate / Infrastructure Backing"> Real Estate / Infrastructure Backing</label>
+                        <label><input type="radio" name="Strategic Interest" value="Corporate Naming Rights / Sponsorship"> Corporate Naming Rights / Sponsorship</label>
+                    </div>
+                    <div class="form-group">
+                        <label>What is your ideal capital deployment timeframe?</label>
+                        <select name="Timeframe" required>
+                            <option value="">Select timeframe...</option>
+                            <option>Immediate (0-6 months)</option>
+                            <option>Short-Term (6-12 months)</option>
+                            <option>Long-Term (1-3 years)</option>
+                        </select>
+                    </div>
+                    <div class="form-group radio-group">
+                        <label style="font-weight: 600; text-transform: uppercase; font-size: 0.85rem; letter-spacing: 0.02em;">What scale of project aligns with your mandate?</label>
+                        <label><input type="radio" name="Project Scale" value="Single neighborhood facility" required> Single neighborhood facility (Adaptive reuse)</label>
+                        <label><input type="radio" name="Project Scale" value="Large-scale regional complex"> Large-scale regional complex (New build)</label>
+                        <label><input type="radio" name="Project Scale" value="Programmatic/League sponsorships"> Programmatic/League sponsorships</label>
+                    </div>
+                    <div class="form-group">
+                        <label>Name</label>
+                        <input type="text" name="Name" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Company</label>
+                        <input type="text" name="Company" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Contact Email</label>
+                        <input type="email" name="Email" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Talk to the team</button>
+                </form>
+            </div>
+
+            <!-- Success State -->
+            <div id="success-state" class="survey-branch" style="text-align: left; padding: 2rem 0;">
+                <div style="font-size: 2.5rem; margin-bottom: 1rem; color: var(--accent-urgent);">///</div>
+                <h3 style="margin-bottom: 1rem; text-transform: uppercase;">Data Received</h3>
+                <p>Your information has been securely logged. A member of the Polar Pickleball strategy team will follow up shortly.</p>
+                <button class="btn btn-outline" style="text-align: center; margin-top: 2rem;" onclick="resetSurvey()">Return</button>
+            </div>
+
+        </div>
+    </header>
+
+    <section id="problem" class="stats">
+        <div class="stats-header">
+            <h2>The Reality Check</h2>
+            <p>Mapping the gap between exponential sporting demand and available winter resources.</p>
+        </div>
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-number">37<span>%</span></div>
+                <p><strong>YoY Growth</strong><br>Pickleball maintains its position as the fastest-growing sport in North America, rapidly outpacing municipal planning capabilities.</p>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">6</div>
+                <p><strong>Months of Frozen Courts</strong><br>Outdoor infrastructure is rendered entirely unusable for half the year, severely bottlenecking access and stalling player progression.</p>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">1</div>
+                <p><strong>Facility in 10 Years</strong><br>The city's current master plan only accounts for a single new public indoor recreation complex over the next decade.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="solution" class="coalition">
+        <div class="coalition-content">
+            <h2>Collaborative Architecture</h2>
+            <p>Standard municipal funding cannot shoulder this deficit alone. The solution requires <strong>strategic alliances</strong> and the adaptive reuse of existing commercial real estate. By matching private capital and underutilized commercial footprints with localized player demand, Polar Pickleball is bypassing bureaucratic delays to collaboratively engineer the winter infrastructure Ottawa requires.</p>
+        </div>
+    </section>
+
+    <footer id="contact">
+        <div class="footer-grid">
+            <div class="footer-col">
+                <h4>Polar Pickleball</h4>
+                <p style="font-size: 0.875rem; color: #888;">Engineering Ottawa's indoor sports infrastructure through strategic private coalition.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Contact</h4>
+                <a href="mailto:strategy@polarpickleball.ca">strategy@polarpickleball.ca</a>
+                <a href="#problem">Data & Research</a>
+            </div>
+            <div class="footer-col">
+                <h4>Legal & Privacy</h4>
+                <a href="#">Privacy Policy (Data Collection)</a>
+                <a href="#">Terms of Engagement</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Polar Pickleball Coalition. All rights reserved.</p>
+            <div class="trust-badges">
+                <span>SSL Secured</span>
+                <span>Data Encrypted</span>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Set your published Google Apps Script Web App URL here
+        const GAS_WEB_APP_URL = 'YOUR_GOOGLE_APPS_SCRIPT_WEB_APP_URL';
+
+        function showBranch(branchId) {
+            const branches = document.querySelectorAll('.survey-branch');
+            branches.forEach(branch => branch.classList.remove('active'));
+            document.getElementById(branchId).classList.add('active');
+        }
+
+        function resetSurvey() {
+            const forms = document.querySelectorAll('form');
+            forms.forEach(form => form.reset());
+            showBranch('initial-hook');
+        }
+
+        async function submitForm(event) {
+            event.preventDefault(); 
+            
+            const form = event.target;
+            const submitBtn = form.querySelector('button[type="submit"]');
+            const originalBtnText = submitBtn.innerText;
+            
+            submitBtn.innerText = 'Submitting...';
+            submitBtn.disabled = true;
+
+            const formData = new FormData(form);
+            const data = Object.fromEntries(formData.entries());
+
+            try {
+                await fetch(GAS_WEB_APP_URL, {
+                    method: 'POST',
+                    mode: 'no-cors',
+                    headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+                    body: JSON.stringify(data)
+                });
+                
+                showBranch('success-state');
+                form.reset();
+            } catch (error) {
+                console.error('Submission error:', error);
+                alert('There was a network error submitting your data. Please try again.');
+            } finally {
+                submitBtn.innerText = originalBtnText;
+                submitBtn.disabled = false;
+            }
+        }
+    </script>
+</body>
+</html>
