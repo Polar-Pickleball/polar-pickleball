@@ -4,53 +4,63 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Polar Pickleball | Ottawa's Indoor Coalition</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         /* Base Reset & Typography */
         * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
-        body { color: #111111; line-height: 1.6; background-color: #fafafa; }
-        h1, h2, h3, h4 { font-weight: 700; line-height: 1.1; letter-spacing: -0.03em; }
-        p { margin-bottom: 1rem; color: #555555; }
+        body { color: var(--text-dark); line-height: 1.6; background-color: var(--cream); }
+        h1, h2, h3, h4 { font-family: 'Archivo Black', 'Inter', sans-serif; font-weight: 400; line-height: 1.1; letter-spacing: -0.01em; }
+        p { margin-bottom: 1rem; color: var(--text-body-muted); }
         
-        /* Sleek, Urgent, Minimalist Color Palette */
+        /* Polar Pickleball Brand Palette — full light theme */
         :root {
-            --bg-dark: #0a0a0a;
-            --text-light: #ffffff;
-            --text-muted: #a3a3a3;
-            --accent-urgent: #d9381e; 
-            --accent-urgent-hover: #b52b15;
-            --form-bg: #ffffff;
-            --border-color: #e5e5e5;
-            --btn-dark: #111111;
-            --btn-dark-hover: #333333;
+            --bg-dark: #FAF7F0;
+            --text-light: #14192B;
+            --text-muted: #5B6478;
+            --accent-urgent: #3646E0;
+            --accent-urgent-hover: #2A37B8;
+            --accent-bright: #2FA4F0;
+            --accent-bright-hover: #1C86D1;
+            --form-bg: #FFFFFF;
+            --border-color: #E7E1D3;
+            --btn-dark: #2FA4F0;
+            --btn-dark-hover: #1C86D1;
+            --text-dark: #14192B;
+            --text-body-muted: #5B6478;
+            --cream: #FAF7F0;
+            --cream-alt: #F5F1E8;
         }
 
         /* Navigation - Ultra Minimal */
-        nav { display: flex; justify-content: space-between; align-items: center; padding: 1.5rem 5%; background-color: var(--bg-dark); color: var(--text-light); border-bottom: 1px solid #222; position: sticky; top: 0; z-index: 100;}
-        .logo { font-size: 1.25rem; font-weight: 800; letter-spacing: -0.02em; color: var(--text-light); text-decoration: none; text-transform: uppercase; }
+        nav { display: flex; justify-content: space-between; align-items: center; padding: 1.5rem 5%; background-color: var(--bg-dark); color: var(--text-light); border-bottom: 1px solid var(--border-color); position: sticky; top: 0; z-index: 100;}
+        .logo { font-size: 1.25rem; font-weight: 800; letter-spacing: -0.02em; color: var(--accent-bright); text-decoration: none; text-transform: uppercase; display: flex; align-items: center; }
+        .logo-img { height: 68px; width: auto; display: block; border-radius: 8px; }
         .nav-links a { color: var(--text-muted); text-decoration: none; margin-left: 2.5rem; font-weight: 500; font-size: 0.875rem; text-transform: uppercase; letter-spacing: 0.05em; transition: color 0.2s; }
-        .nav-links a:hover { color: var(--text-light); }
+        .nav-links a:hover { color: var(--accent-bright); }
 
         /* Hero Section (Above the Fold Split) with High Contrast Image Overlay */
         .hero { 
             display: flex; 
             flex-wrap: wrap; 
             padding: 5rem 5%; 
-            background: linear-gradient(to right, rgba(10, 10, 10, 0.95) 30%, rgba(10, 10, 10, 0.7)), url('https://images.unsplash.com/photo-1622228837656-3bb1d977e231?auto=format&fit=crop&q=80') center/cover;
+            background: linear-gradient(to right, rgba(250, 247, 240, 0.95) 30%, rgba(250, 247, 240, 0.8)), url('https://images.unsplash.com/photo-1622228837656-3bb1d977e231?auto=format&fit=crop&q=80') center/cover;
             color: var(--text-light); 
             min-height: 85vh; 
-            align-items: center; 
+            align-items: flex-start; 
             gap: 4rem; 
         }
         .hero-content { flex: 1; min-width: 300px; }
-        .hero-content h1 { font-size: clamp(2.5rem, 5vw, 4.5rem); margin-bottom: 1.5rem; color: #ffffff; }
-        .hero-content h2 { font-size: 1.25rem; font-weight: 400; margin-bottom: 2rem; color: var(--text-muted); line-height: 1.6; }
-        .hero-content p { color: #cccccc; font-size: 1.1rem; }
+        .hero-content h1 { font-size: clamp(2.5rem, 5vw, 4.5rem); margin-bottom: 1.5rem; color: var(--accent-urgent); }
+        .hero-content h2 { font-size: 1.25rem; font-weight: 400; margin-bottom: 2rem; color: var(--text-dark); line-height: 1.6; font-family: 'Inter', sans-serif; }
+        .hero-content p { color: var(--text-body-muted); font-size: 1.1rem; }
         
         /* Survey / Intake Box */
-        .survey-container { flex: 1; min-width: 320px; max-width: 500px; background: var(--form-bg); border-radius: 4px; padding: 3rem 2.5rem; box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5); color: #111111; position: relative; }
-        .survey-header { text-align: left; margin-bottom: 2rem; padding-bottom: 1rem; border-bottom: 2px solid #111; }
-        .survey-header h3 { font-size: 1.5rem; margin-bottom: 0.5rem; text-transform: uppercase; }
-        .survey-header p { font-size: 0.875rem; margin: 0; color: #555; font-weight: 500; }
+        .survey-container { flex: 1; min-width: 320px; max-width: 500px; background: var(--form-bg); border-radius: 4px; padding: 3rem 2.5rem; box-shadow: 0 25px 50px rgba(15, 27, 51, 0.35); color: var(--text-dark); position: relative; }
+        .survey-header { text-align: left; margin-bottom: 2rem; padding-bottom: 1rem; border-bottom: 2px solid var(--accent-urgent); }
+        .survey-header h3 { font-size: 1.5rem; margin-bottom: 0.5rem; text-transform: uppercase; color: var(--accent-urgent); }
+        .survey-header p { font-size: 0.875rem; margin: 0; color: var(--text-body-muted); font-weight: 500; }
         
         /* Survey Logic States */
         .survey-branch { display: none; animation: fadeIn 0.3s ease-in; }
@@ -59,47 +69,48 @@
 
         /* Form Elements */
         .form-group { margin-bottom: 1.5rem; }
-        label { display: block; font-weight: 600; margin-bottom: 0.5rem; font-size: 0.85rem; color: #111; text-transform: uppercase; letter-spacing: 0.02em; }
-        input[type="text"], input[type="email"], select { width: 100%; padding: 0.875rem; border: 1px solid var(--border-color); border-radius: 2px; font-size: 1rem; background-color: #fafafa; transition: border-color 0.2s; }
-        input[type="text"]:focus, input[type="email"]:focus, select:focus { outline: none; border-color: #111; background-color: #fff; }
+        label { display: block; font-weight: 600; margin-bottom: 0.5rem; font-size: 0.85rem; color: var(--text-dark); text-transform: uppercase; letter-spacing: 0.02em; }
+        input[type="text"], input[type="email"], select { width: 100%; padding: 0.875rem; border: 1px solid var(--border-color); border-radius: 2px; font-size: 1rem; background-color: var(--cream); transition: border-color 0.2s; }
+        input[type="text"]:focus, input[type="email"]:focus, select:focus { outline: none; border-color: var(--accent-urgent); background-color: #fff; }
         .radio-group label { font-weight: 400; display: flex; align-items: center; gap: 0.75rem; cursor: pointer; margin-bottom: 0.75rem; text-transform: none; letter-spacing: normal; font-size: 0.95rem; }
+        .radio-group input[type="radio"] { accent-color: var(--accent-urgent); width: 16px; height: 16px; }
         
         /* Buttons */
-        .btn { display: inline-block; width: 100%; padding: 1.125rem; font-size: 0.875rem; font-weight: 700; text-align: center; text-transform: uppercase; letter-spacing: 0.05em; border: none; border-radius: 2px; cursor: pointer; transition: all 0.2s; }
+        .btn { display: inline-block; width: 100%; padding: 1.125rem; font-size: 0.875rem; font-weight: 700; text-align: center; text-transform: uppercase; letter-spacing: 0.05em; border: none; border-radius: 999px; cursor: pointer; transition: all 0.2s; }
         .btn-primary { background-color: var(--btn-dark); color: white; }
         .btn-primary:hover { background-color: var(--btn-dark-hover); }
         .btn-action { background-color: var(--accent-urgent); color: white; }
         .btn-action:hover { background-color: var(--accent-urgent-hover); }
-        .btn-outline { background-color: transparent; border: 1px solid var(--border-color); color: #111; margin-bottom: 0.75rem; text-align: left; padding: 1.25rem 1.5rem; }
-        .btn-outline:hover { border-color: #111; background-color: #f5f5f5; }
-        .btn-back { background: none; border: none; color: #888; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em; cursor: pointer; display: flex; align-items: center; gap: 0.25rem; margin-bottom: 1.5rem; padding: 0; }
-        .btn-back:hover { color: #111; }
+        .btn-outline { background-color: transparent; border: 1.5px solid var(--accent-bright); color: var(--accent-urgent); margin-bottom: 0.75rem; text-align: left; padding: 1.25rem 1.75rem; border-radius: 999px; }
+        .btn-outline:hover { border-color: var(--accent-urgent); background-color: var(--cream-alt); }
+        .btn-back { background: none; border: none; color: var(--text-body-muted); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em; cursor: pointer; display: flex; align-items: center; gap: 0.25rem; margin-bottom: 1.5rem; padding: 0; }
+        .btn-back:hover { color: var(--accent-urgent); }
 
         /* Section 2: Reality Check (Data) */
         .stats { padding: 6rem 5%; background: white; text-align: left; }
         .stats-header { max-width: 600px; margin-bottom: 4rem; }
-        .stats-header h2 { font-size: 2.5rem; margin-bottom: 1rem; text-transform: uppercase; }
+        .stats-header h2 { font-size: 2.5rem; margin-bottom: 1rem; text-transform: uppercase; color: var(--text-dark); }
         .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 4rem; border-top: 1px solid var(--border-color); padding-top: 4rem; }
         .stat-card { padding: 0; }
-        .stat-number { font-size: 4rem; font-weight: 800; color: #111; margin-bottom: 1rem; line-height: 1; letter-spacing: -0.05em; }
-        .stat-number span { font-size: 2rem; color: #888; }
-        .stat-card p strong { display: block; margin-bottom: 0.5rem; color: #111; font-size: 1.1rem; }
+        .stat-number { font-size: 4rem; font-weight: 800; color: var(--accent-urgent); margin-bottom: 1rem; line-height: 1; letter-spacing: -0.05em; }
+        .stat-number span { font-size: 2rem; color: var(--text-body-muted); }
+        .stat-card p strong { display: block; margin-bottom: 0.5rem; color: var(--text-dark); font-size: 1.1rem; }
         
         /* Section 3: Coalition */
-        .coalition { padding: 6rem 5%; background-color: #111; color: white; }
+        .coalition { padding: 6rem 5%; background-color: var(--bg-dark); color: var(--text-dark); }
         .coalition-content { max-width: 800px; margin: 0 auto; text-align: left; }
-        .coalition-content h2 { font-size: 2.5rem; margin-bottom: 1.5rem; text-transform: uppercase; }
-        .coalition-content p { font-size: 1.25rem; color: #aaa; line-height: 1.8; }
-        .coalition-content strong { color: white; }
+        .coalition-content h2 { font-size: 2.5rem; margin-bottom: 1.5rem; text-transform: uppercase; color: var(--accent-bright); }
+        .coalition-content p { font-size: 1.25rem; color: var(--text-body-muted); line-height: 1.8; }
+        .coalition-content strong { color: var(--accent-urgent); }
 
         /* Footer */
-        footer { padding: 4rem 5%; background: var(--bg-dark); color: #888; border-top: 1px solid #222; }
+        footer { padding: 4rem 5%; background: var(--cream-alt); color: var(--text-muted); border-top: 1px solid var(--border-color); }
         .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 2rem; margin-bottom: 2rem; }
-        .footer-col h4 { color: white; margin-bottom: 1rem; text-transform: uppercase; font-size: 0.9rem; }
-        footer a { color: #888; text-decoration: none; transition: color 0.2s; display: block; margin-bottom: 0.5rem; font-size: 0.875rem; }
-        footer a:hover { color: white; }
-        .trust-badges { display: flex; gap: 1rem; margin-top: 1rem; color: #555; font-size: 0.75rem; text-transform: uppercase; font-weight: 700; }
-        .footer-bottom { text-align: left; font-size: 0.75rem; border-top: 1px solid #222; padding-top: 2rem; margin-top: 2rem; display: flex; justify-content: space-between; }
+        .footer-col h4 { color: var(--accent-urgent); margin-bottom: 1rem; text-transform: uppercase; font-size: 0.9rem; }
+        footer a { color: var(--text-muted); text-decoration: none; transition: color 0.2s; display: block; margin-bottom: 0.5rem; font-size: 0.875rem; }
+        footer a:hover { color: var(--accent-bright); }
+        .trust-badges { display: flex; gap: 1rem; margin-top: 1rem; color: var(--text-muted); font-size: 0.75rem; text-transform: uppercase; font-weight: 700; }
+        .footer-bottom { text-align: left; font-size: 0.75rem; border-top: 1px solid var(--border-color); padding-top: 2rem; margin-top: 2rem; display: flex; justify-content: space-between; }
         
         @media (max-width: 768px) {
             .nav-links { display: none; }
@@ -114,7 +125,7 @@
 <body>
 
     <nav>
-        <a href="#" class="logo">Polar Pickleball</a>
+        <a href="#" class="logo"><img src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz48c3ZnIGlkPSJDYW1hZGFfMSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB2aWV3Qm94PSIwIDAgMTI4MCAxMjgwIj48ZGVmcz48c3R5bGU+LmNscy0xe2ZpbGw6IzM4YjBmZjt9LmNscy0ye2ZpbGw6I2ZhZjBkYzt9LmNscy0ze2ZpbGw6IzI5NThlMjt9PC9zdHlsZT48L2RlZnM+PHJlY3QgY2xhc3M9ImNscy0yIiB4PSItMzEuODQiIHk9Ii0zMS44NCIgd2lkdGg9IjEzNDMuNjkiIGhlaWdodD0iMTM0My42OSIvPjxwYXRoIGNsYXNzPSJjbHMtMSIgZD0iTTIzNy4wMyw2NzkuNzNsLTUzLjUzLDI0LjczLDIzMS4xMSwxODUuMzFjNS43Niw0LjYxLDcuODcsMTIuMzQsNS4zMiwxOS4yNWwtMjAuNjMsMTAwLjA2YzcwLjExLTQyLjg0LDE1Mi41MS02Ny41MywyNDAuNjktNjcuNTNzMTcwLjU5LDI0LjcsMjQwLjcxLDY3LjU0bC0yMC41OS0xMDAuMDdjLTIuNTktNi45Mi0uNDMtMTQuNjQsNS4yOC0xOS4yNWwyMzEuMTEtMTg1LjMxLTUzLjUzLTI0LjczYy03LjU0LTMuNTEtMTEuMjMtMTIuMS04LjY0LTE5Ljk3bDQ2LjA0LTEzOC4wNy0xMzQuNjYsMjguNzFjLTUuODEsMS4yNS0xMS42MS0xLjc4LTEzLjk3LTcuMTVsLTI3LjUxLTYyLjY1LTEwNC42LDExMC42NmMtMTAuOTksMTEuNjYtMzAuMzksMS42My0yNy4yNy0xNC4wN2w1MS4xMy0yNTguMDMtODAuNTEsNDYuOGMtNy42OCw0LjQ3LTE3LjU3LDEuNTktMjEuNi02LjM0bC04MS4zNy0xNTguNjYtODEuMzIsMTU4LjY2Yy00LjA4LDcuOTItMTMuOTIsMTAuOC0yMS42LDYuMzRsLTgwLjU1LTQ2LjgsNTEuMTcsMjU4LjAzYzMuMTIsMTUuNy0xNi4yOCwyNS43My0yNy4yNiwxNC4wN2wtMTA0LjYxLTExMC42Ni0yNy41MSw2Mi42NWMtMi4zNSw1LjM3LTguMjEsOC40LTEzLjk3LDcuMTVsLTEzNC42Ni0yOC43MSw0NS45OSwxMzguMDdjMi42NCw3Ljg4LTEuMDUsMTYuNDctOC42NCwxOS45N1oiLz48cmVjdCBjbGFzcz0iY2xzLTMiIHg9IjIwOC43MyIgeT0iNzMyLjAxIiB3aWR0aD0iODYyLjU0IiBoZWlnaHQ9IjE2Ni43MiIvPjxwYXRoIGNsYXNzPSJjbHMtMiIgZD0iTTI0Mi4xMyw3NTcuNzZoMjcuM2MzNi4wNCwwLDQ5LjQzLDIxLjA3LDQ5LjQzLDQzLjczcy0xMy45MSw0My44Ni00Ni4xMiw0My44NmgtMy45OHYyMS42aC0yNi42NHYtMTA5LjE5Wk0yNzQuMDcsODE5LjM4YzEyLjMyLDAsMTguNjgtNy42OSwxOC42OC0xNy44OXMtNi40OS0xNy43Ni0xOC42OC0xNy43NmgtNS4zdjM1LjY1aDUuM1oiLz48cGF0aCBjbGFzcz0iY2xzLTIiIGQ9Ik0zMjkuNDYsNzU4LjAyaDI2Ljc3djEwOC45M2gtMjYuNzd2LTEwOC45M1oiLz48cGF0aCBjbGFzcz0iY2xzLTIiIGQ9Ik0zNjguMDIsODEyLjM1YzAtMzAuMzUsMjQuOTEtNTYuNzIsNTYuNzItNTYuNzIsMjkuODIsMCw1NC40NiwyMy40Niw1Ni40NSw1MS40MmgtMjYuOWMtMi4xMi0xMy42NS0xNC4wNS0yNC42NS0yOS41NS0yNC42NS0xNy4zNiwwLTI5Ljk1LDE0LjA1LTI5Ljk1LDI5Ljk1czEyLjU5LDI5Ljk1LDI5Ljk1LDI5Ljk1YzE1LjY0LDAsMjcuNDMtMTEuMTMsMjkuNTUtMjQuOTFoMjcuMDNjLTEuOTksMjguMDktMjYuNjQsNTEuNTUtNTYuNTgsNTEuNTUtMzEuOCwwLTU2LjcyLTI2LjI0LTU2LjcyLTU2LjU4WiIvPjxwYXRoIGNsYXNzPSJjbHMtMiIgZD0iTTQ5My43Nyw3NTcuODloMjYuNjR2NDMuMmwyMC41NC00My4yaDMxLjE0bC0yNi45LDQ4LjksMzQuOTgsNjAuMTZoLTMzLjEzbC0yNi42NC01My41NHY1My42N2gtMjYuNjR2LTEwOS4xOVoiLz48cGF0aCBjbGFzcz0iY2xzLTIiIGQ9Ik01ODYsNzU3LjYyaDI2LjY0djg0LjAyaDMyLjA3djI1LjMxaC01OC43di0xMDkuMzNaIi8+PHBhdGggY2xhc3M9ImNscy0yIiBkPSJNNjU0LjUxLDc1OC4wMmg2Mi4yOHYyNS4wNGgtMzUuNjV2MTguODJoMzIuNnYxOS44OGgtMzIuNnYxOS44OGgzNS42NXYyNS4zMWgtNjIuMjh2LTEwOC45M1oiLz48cGF0aCBjbGFzcz0iY2xzLTIiIGQ9Ik03MzAuODMsNzU3Ljc2aDMwLjM1YzI1Ljk3LDAsMzguODMsOS42NywzOC44MywyOS44MiwwLDkuNDEtNC4xMSwxNi40My0xMC4wNywyMC4yNyw5LjU0LDMuOTgsMTUuMTEsMTMuMTIsMTUuMTEsMjQuMTIsMCwyMS42LTEzLjc4LDM0Ljk4LTQzLjQ3LDM0Ljk4aC0zMC43NHYtMTA5LjE5Wk03NjEuNzEsODAwLjY5YzguMzUsMCwxMy4zOC0yLjY1LDEzLjM4LTkuOTQsMC03Ljk1LTQuOS0xMC40Ny0xMy4zOC0xMC40N2gtNS44M3YyMC40MWg1LjgzWk03NjAuNzgsODQyLjdjMTEuNCwwLDE3LjIzLTIuNjUsMTcuMjMtMTEuMjZzLTUuODMtMTEuNjYtMTYuMy0xMS42NmgtNS44M3YyMi45M2g0LjlaIi8+PHBhdGggY2xhc3M9ImNscy0yIiBkPSJNODc4Ljk5LDg1My40M2gtNDIuMTRsLTQuNSwxMy41MmgtMjcuOTZsMzkuNzUtMTA5LjA2aDI3LjU2bDM5LjA5LDEwOS4wNmgtMjcuM2wtNC41LTEzLjUyWk04NzIuMSw4MzIuNjNsLTE0LjE4LTQzLjA3LTE0LjE4LDQzLjA3aDI4LjM2WiIvPjxwYXRoIGNsYXNzPSJjbHMtMiIgZD0iTTkxNy44MSw3NTcuNjJoMjYuNjR2ODQuMDJoMzIuMDd2MjUuMzFoLTU4Ljd2LTEwOS4zM1oiLz48cGF0aCBjbGFzcz0iY2xzLTIiIGQ9Ik05ODYuMzIsNzU3LjYyaDI2LjY0djg0LjAyaDMyLjA3djI1LjMxaC01OC43MXYtMTA5LjMzWiIvPjxwYXRoIGNsYXNzPSJjbHMtMiIgZD0iTTQxMi44MSw2MDMuNThoMjcuM2MzNi4wNCwwLDQ5LjQzLDIxLjA3LDQ5LjQzLDQzLjczcy0xMy45MSw0My44Ni00Ni4xMiw0My44NmgtMy45OHYyMS42aC0yNi42NHYtMTA5LjE5Wk00NDQuNzQsNjY1LjJjMTIuMzIsMCwxOC42OC03LjY4LDE4LjY4LTE3Ljg5cy02LjQ5LTE3Ljc2LTE4LjY4LTE3Ljc2aC01LjN2MzUuNjVoNS4zWiIvPjxwYXRoIGNsYXNzPSJjbHMtMiIgZD0iTTU1NC4zMyw3MTQuNzZjLTMzLDAtNTYuNzItMjYuMzctNTYuNzItNTYuNzJzMjMuNzItNTYuNTgsNTYuNzItNTYuNTgsNTYuNTgsMjYuMzcsNTYuNTgsNTYuNTgtMjMuNzIsNTYuNzItNTYuNTgsNTYuNzJaTTU1NC4zMyw2MjguMjNjLTE3LjM2LDAtMjkuOTUsMTMuNTItMjkuOTUsMjkuODJzMTIuNTksMjkuOTUsMjkuOTUsMjkuOTUsMjkuODItMTMuNjUsMjkuODItMjkuOTUtMTIuNTktMjkuODItMjkuODItMjkuODJaIi8+PHBhdGggY2xhc3M9ImNscy0yIiBkPSJNNjIzLjM3LDYwMy40NWgyNi42NHY4NC4wMWgzMi4wN3YyNS4zMWgtNTguNzF2LTEwOS4zMloiLz48cGF0aCBjbGFzcz0iY2xzLTIiIGQ9Ik03NTYuNDEsNjk5LjI2aC00Mi4xNGwtNC41MSwxMy41MmgtMjcuOTZsMzkuNzUtMTA5LjA2aDI3LjU2bDM5LjA5LDEwOS4wNmgtMjcuM2wtNC41MS0xMy41MlpNNzQ5LjUyLDY3OC40NWwtMTQuMTgtNDMuMDctMTQuMTgsNDMuMDdoMjguMzZaIi8+PHBhdGggY2xhc3M9ImNscy0yIiBkPSJNODQzLjc0LDcxMi43N2wtOS4xNC0yMi4xM2MtMi41Mi40LTUuMy41My04LjIyLjUzaC00LjV2MjEuNzNoLTI2LjY0di0xMDkuMzJoMjcuM2MzNi4wNCwwLDQ5LjQzLDIxLjA3LDQ5LjQzLDQzLjczLDAsMTIuODUtNC4zNywyNS4xOC0xMy45MSwzMy4zOWwxNi41NiwzMi4wN2gtMzAuODhaTTgyNy4xNyw2NjUuMmMxMi4zMiwwLDE4LjY4LTcuNjgsMTguNjgtMTcuODlzLTYuNDktMTcuNzYtMTguNjgtMTcuNzZoLTUuM3YzNS42NWg1LjNaIi8+PHBhdGggY2xhc3M9ImNscy0yIiBkPSJNNzA4LjAzLDQ0NS4zOWwtMS41NS0yLjIzYy4xNy00LjItMS43LTcuMjctNS4wOC03LjMybC00Ljk4LTcuMTZjLjYzLTMuNDMtLjkxLTUuOTMtMy44NC01LjUybC0uMjYtLjM3Yy0zLjMxLTQuOTItMi45OC0xMS40My44Mi0xNS45OSwxLjg2LTIuMjMsMi4wMi01LjQxLjQtNy44MmwtMTguMDItMjYuNzZjLTIuMS0zLjExLTYuMzItMy45NC05LjQzLTEuODRsLTIwLjA5LDEzLjUzYy0zLjExLDIuMS0zLjk0LDYuMzItMS44NCw5LjQzbDE3Ljk3LDI2LjY5YzEuNjEsMi4zOSw0LjU5LDMuNDQsNy4zNCwyLjU5bC4xNi0uMDVjNS42Mi0xLjc0LDExLjcyLjQxLDE1LjAxLDUuMjlsLjMyLjQ2Yy03LjU0LDYuNTctMTUuMjQsOC44Ny0xNS4yNCw4Ljg3LDAsMCw1LjE5LDQuMjYsNy45MiwxMC4xNSwyLjY3LTEuMjQsOC44My00LjgxLDEzLjYxLTkuOTZsMS44NCwyLjY1Yy0uNDEuMzctLjgyLjc2LTEuMjQsMS4xOC01LjUyLDUuNTItMTAuODksOC4yMS0xNC44MSw5LjUyLTEuMTcuMzktMy4zNy44MS02LjE4LDEuMjRoMHMwLDAsMCwwYy02LjI1Ljk2LTE1Ljc5LDAtMTUuNzksMCwwLDAsMTQuMTEtMS4yNiwyMC41OC0zLjQ5LTQuMjItNi40NS05LjQyLTExLjk4LTE1LjUtMTYuMDguNzQtMS4zLDEuMTgtMi44LDEuMTgtNC40LDAtNC45LTMuOTctOC44Ny04Ljg3LTguODctNC4wNywwLTcuNDksMi43NC04LjUzLDYuNDgtMi43OS0uNTUtNS43LS44NC04LjcxLS44NC0zLjYxLDAtNy4wNS40Mi0xMC4yNSwxLjItLjkyLTMuOTEtNC40My02LjgzLTguNjItNi44My00LjksMC04Ljg3LDMuOTctOC44Nyw4Ljg3LDAsMi4yNS44NSw0LjMsMi4yMyw1Ljg3LTUuMTQsNC43NC04LjE3LDEwLjk3LTguMTcsMTcuNzksMCwxNC44NSwxMi4wNCwyNi44OSwyNi44OSwyNi44OSwwLDAsMy4zNiwyOC4zMS0yNC44NiwyMy44NWwtMy4yMS0uODhjLTIuNDktLjY4LTQuOTktLjA1LTcuNDMuNzctNS40OSwxLjg1LTkuODgsNC40OS0xMy4yMiw2LjgyLTEuOTIsMS4zNC0xLjQyLDQuMi45Miw0LjM1bDEzLjU0LjgyLDMuMDQsNS43MmM1LjcxLDExLjA4LDE2LjQ4LDE5LjExLDI5LjI1LDIxLjA3bC0xMi41NCwxMS42OGMtLjcuODMtMS4xNSwxLjg2LTEuMjIsMi45NC0uNjEsOC44NSwyLjIyLDE1LjI4LDQuNCwxOC44MiwxLjA0LDEuNjksMy40OSwxLjcyLDQuNjEuMDksMi4wNS0yLjk5LDQuOTgtNy44Miw2LjY4LTEzLjAxLDM0LjUtMi45Myw2MC4xLTI4LjQzLDYwLjEtNjguMjYsMC03LjQ0LTEtMTQuOTgtMi45MS0yMi4yLDYuMDYtNS42NSwxNC42NC0xMy45NiwxNy40Ny0xOC4yMy41My0uNzkuOTktMS41OSwxLjM5LTIuMzhsMy4wMi0yLjA0YzEuMDEtLjY4LDEuMjctMi4wNi41Ny0zLjA2Wk02NzYuNzUsNDA3LjE1Yy0uMjkuMTUtLjc2LjcyLTEuNTYuNTMtLjM4LS4wOS0uNy0uMzUtLjg4LS42OWwtMS4wNi0xLjk2Yy0uMDktLjE3LS4wNi0uMzguMDctLjUyLjcxLS43NC43MS0uNzYuODMtLjgxbC45MS0uMzdjLjE4LS4wNy4zOS0uMDIuNTEuMTNsMS40NSwxLjcyYy41MS42MS4zOSwxLjUzLS4yNywxLjk4Wk02ODAuOTIsMzkwLjM3bC0zLjkzLDYuMTQsMy40OSwyLjkzYy4yNi4yMi4xOS42My0uMTIuNzZsLTYuODIsMi43Ny01LjA4LDUuMzNjLS4yMy4yNC0uNjQuMTUtLjc1LS4xN2wtMS40NC00LjMyLTcuMTYsMS4zOWMtLjM0LjA3LS42Mi0uMjYtLjUxLS41OWwuNzctMi4yLTEuODItMS40NWMtLjI1LS4yLS4yMi0uNTkuMDYtLjc0bDIuMTktMS4yLS42NS0xLjk3Yy0uMTEtLjMyLjE3LS42NC41LS41OGw1LjY2Ljg5LTYuMDktNWMtLjI2LS4yMi0uMi0uNjQuMTItLjc2bDIuNzEtMS4xLjE1LTMuNTVjLjAxLS4zLjMxLS41LjU5LS40bDMuMzYsMS4xNiwyLjAyLTIuMTFjLjI0LS4yNS42NS0uMTUuNzUuMTdsMi40MSw3LjUsMS4yNS01LjU5Yy4wNy0uMzMuNDctLjQ2LjcyLS4yNWwxLjU5LDEuMzMsMS45Mi0xLjZjLjI1LS4yMS42Mi0uMDkuNzIuMjFsLjY4LDIuMjIsMi4zMy4wOWMuMzUuMDEuNTUuNC4zNi42OVpNNjE0LjY4LDQ1OS45M2MtNS44MSwwLTEwLjUyLTMuNy0xMC41Mi04LjI3LDAtMS43NS43LTMuMzcsMS44OC00LjcxLjgzLDEuOTgsMy4yMiwzLjQxLDYuMDcsMy40MSwzLjU0LDAsNi40MS0yLjIsNi40MS00LjkyLDAtLjU2LS4xNS0xLjA5LS4zOC0xLjYsNC4xMSwxLjEyLDcuMDcsNC4xOSw3LjA3LDcuODEsMCw0LjU3LTQuNzEsOC4yNy0xMC41Miw4LjI3WiIvPjxwYXRoIGNsYXNzPSJjbHMtMiIgZD0iTTU2NC45NCw0NTkuODljLTkuNDQsMC0xNy4wOSw3LjY1LTE3LjA5LDE3LjA5LDAsOS40NCw3LjY1LDE3LjA5LDE3LjA5LDE3LjA5LDkuNDQsMCwxNy4wOS03LjY1LDE3LjA5LTE3LjA5LDAtOS40NC03LjY1LTE3LjA5LTE3LjA5LTE3LjA5Wk01NzMuMjgsNDY0LjA5Yy40LS40LDEuNTMuMDgsMi41MiwxLjA3Ljk5Ljk5LDEuNDcsMi4xMiwxLjA3LDIuNTItLjQuNC0xLjUzLS4wOC0yLjUyLTEuMDdzLTEuNDctMi4xMi0xLjA3LTIuNTJaTTU3MS45NSw0NjYuNTdjMS40LDAsMi41My45OCwyLjUzLDIuMTlzLTEuMTMsMi4xOS0yLjUzLDIuMTljLTEuNCwwLTIuNTMtLjk4LTIuNTMtMi4xOXMxLjEzLTIuMTksMi41My0yLjE5Wk01NjQuOTgsNDYxLjE2YzEuNCwwLDIuNTMuNDYsMi41MywxLjAzLDAsLjU3LTEuMTMsMS4wMy0yLjUzLDEuMDNzLTIuNTMtLjQ2LTIuNTMtMS4wM2MwLS41NywxLjEzLTEuMDMsMi41My0xLjAzWk01NTkuNCw0NjYuNTdjMS40LDAsMi41My45OCwyLjUzLDIuMTksMCwxLjIxLTEuMTMsMi4xOS0yLjUzLDIuMTlzLTIuNTMtLjk4LTIuNTMtMi4xOWMwLTEuMjEsMS4xMy0yLjE5LDIuNTMtMi4xOVpNNTU0LjA4LDQ2NS43OWMuOTktLjk5LDIuMTItMS40NywyLjUyLTEuMDcuNC40LS4wOCwxLjUzLTEuMDcsMi41Mi0uOTkuOTktMi4xMiwxLjQ3LTIuNTIsMS4wNy0uNC0uNC4wOC0xLjUzLDEuMDctMi41MlpNNTUwLjEyLDQ3OC41OWMtLjU3LDAtMS4wMy0xLjEzLTEuMDMtMi41MywwLTEuNC40Ni0yLjUzLDEuMDMtMi41M3MxLjAzLDEuMTMsMS4wMywyLjUzYzAsMS40LS40NiwyLjUzLTEuMDMsMi41M1pNNTU1LjksNDg4LjYzYy0uNC40LTEuNTMtLjA4LTIuNTItMS4wNy0uOTktLjk5LTEuNDctMi4xMi0xLjA3LTIuNTIuNC0uNCwxLjUzLjA4LDIuNTIsMS4wNy45OS45OSwxLjQ3LDIuMTIsMS4wNywyLjUyWk01NTQuNzYsNDc4LjM4Yy0xLjIxLDAtMi4xOS0xLjEzLTIuMTktMi41MywwLTEuNC45OC0yLjUzLDIuMTktMi41MywxLjIxLDAsMi4xOSwxLjEzLDIuMTksMi41MywwLDEuNC0uOTgsMi41My0yLjE5LDIuNTNaTTU1OS40LDQ4NS41NWMtMS40LDAtMi41My0uOTgtMi41My0yLjE5LDAtMS4yMSwxLjEzLTIuMTksMi41My0yLjE5LDEuNCwwLDIuNTMuOTgsMi41MywyLjE5LDAsMS4yMS0xLjEzLDIuMTktMi41MywyLjE5Wk01NjQuOTgsNDkyLjg1Yy0xLjQsMC0yLjUzLS40Ni0yLjUzLTEuMDNzMS4xMy0xLjAzLDIuNTMtMS4wM2MxLjQsMCwyLjUzLjQ2LDIuNTMsMS4wMywwLC41Ny0xLjEzLDEuMDMtMi41MywxLjAzWk01NjQuOTQsNDc5LjIxYy0xLjY2LDAtMy4wMS0xLjM1LTMuMDEtMy4wMSwwLTEuNjYsMS4zNS0zLjAxLDMuMDEtMy4wMSwxLjY2LDAsMy4wMSwxLjM1LDMuMDEsMy4wMSwwLDEuNjYtMS4zNSwzLjAxLTMuMDEsMy4wMVpNNTcxLjk1LDQ4NS41NWMtMS40LDAtMi41My0uOTgtMi41My0yLjE5LDAtMS4yMSwxLjEzLTIuMTksMi41My0yLjE5LDEuNCwwLDIuNTMuOTgsMi41MywyLjE5LDAsMS4yMS0xLjEzLDIuMTktMi41MywyLjE5Wk01NzYuNDksNDg4LjJjLS45OS45OS0yLjEyLDEuNDctMi41MiwxLjA3LS40LS40LjA4LTEuNTMsMS4wNy0yLjUyLjk5LS45OSwyLjEyLTEuNDcsMi41Mi0xLjA3LjQuNC0uMDgsMS41My0xLjA3LDIuNTJaTTU3NS41Niw0NzkuMjFjLTEuMjEsMC0yLjE5LTEuMTMtMi4xOS0yLjUzLDAtMS40Ljk4LTIuNTMsMi4xOS0yLjUzczIuMTksMS4xMywyLjE5LDIuNTNjMCwxLjQtLjk4LDIuNTMtMi4xOSwyLjUzWk01NzkuNzYsNDc4LjU5Yy0uNTcsMC0xLjAzLTEuMTMtMS4wMy0yLjUzLDAtMS40LjQ2LTIuNTMsMS4wMy0yLjUzczEuMDMsMS4xMywxLjAzLDIuNTNjMCwxLjQtLjQ2LDIuNTMtMS4wMywyLjUzWiIvPjwvc3ZnPg==" alt="Polar Pickleball" class="logo-img"></a>
         <div class="nav-links">
             <a href="#problem">The Problem</a>
             <a href="#solution">The Solution</a>
@@ -124,9 +135,9 @@
 
     <header class="hero">
         <div class="hero-content">
-            <h1>Ottawa has a Pickleball Crisis. The City Cannot Solve It Alone.</h1>
-            <h2>The sport is growing at <strong>37% every year</strong>, but Ottawa has only <strong>ONE</strong> new public indoor facility planned for the next decade. For six months of the year, our outdoor courts are unusable, and players are trapped fighting for scraps of time in shared community gyms.</h2>
-            <p>It’s time to stop waiting and start building. Polar Pickleball is forming a coalition of players, property developers, and investors to unlock innovative partnerships and shared commercial spaces. We have the demand. We need the space. Tell us how you fit into the solution.</p>
+            <h1>Ottawa has a Pickleball Problem. We're Here to Help.</h1>
+            <h2>Pickleball grew by <strong>40%</strong> in Canada last year, but the supply of pickleball courts in Ottawa hasn't kept up. Local players are stuck between endless waitlists, shared community gyms, and low quality court alternatives.</h2>
+            <p>We decided to stop waiting and do something about it. We're bringing pickleball court capacity to the City by unlocking innovative partnerships and opportunities in Ottawa. If you'd like to learn more, or want to know about how you can be involved, fill out the survey or send us an email!</p>
         </div>
 
         <div class="survey-container">
@@ -147,7 +158,7 @@
                 <form onsubmit="submitForm(event)">
                     <input type="hidden" name="form_type" value="Player">
                     <div class="form-group radio-group">
-                        <label style="font-weight: 600; text-transform: uppercase; font-size: 0.85rem; letter-spacing: 0.02em;">How would you describe your involvement?</label>
+                        <label style="font-weight: 600; text-transform: uppercase; font-size: 0.85rem; letter-spacing: 0.02em;">How would you describe yourself?</label>
                         <label><input type="radio" name="Involvement" value="Casual Player" required> Casual Player</label>
                         <label><input type="radio" name="Involvement" value="Competitive / Tournament Player"> Competitive / Tournament Player</label>
                         <label><input type="radio" name="Involvement" value="Coach / Instructor"> Coach / Instructor</label>
@@ -155,23 +166,42 @@
                     </div>
                     <div class="form-group">
                         <label>What is your primary postal code?</label>
-                        <p style="font-size: 0.75rem; color: #888; margin-top: -0.25rem;">(Help us map demand hotspots)</p>
+                        <p style="font-size: 0.75rem; color: var(--text-body-muted); margin-top: -0.25rem;">(Help us map demand hotspots)</p>
                         <input type="text" name="Postal Code" placeholder="e.g. K1S" required>
                     </div>
-                    <div class="form-group">
-                        <label>How many hours of play do you lose per week due to lack of facilities?</label>
-                        <select name="Hours Lost" required>
-                            <option value="">Select lost hours...</option>
-                            <option>1 - 3 hours</option>
-                            <option>4 - 6 hours</option>
-                            <option>7+ hours</option>
-                        </select>
+                    <div class="form-group radio-group">
+                        <label style="font-weight: 600; text-transform: uppercase; font-size: 0.85rem; letter-spacing: 0.02em; line-height: 1.4;">During the 6 months of winter, how many hours of pickleball do you play per week?</label>
+                        <label><input type="radio" name="Winter Hours Played" value="1 - 3 hours" required> 1 - 3 hours</label>
+                        <label><input type="radio" name="Winter Hours Played" value="4 - 6 hours"> 4 - 6 hours</label>
+                        <label><input type="radio" name="Winter Hours Played" value="7+ hours"> 7+ hours</label>
                     </div>
                     <div class="form-group radio-group">
-                        <label style="font-weight: 600; text-transform: uppercase; font-size: 0.85rem; letter-spacing: 0.02em; line-height: 1.4;">If a dedicated, year-round indoor facility opened in your quadrant, what is your preferred access model?</label>
-                        <label><input type="radio" name="Access Model" value="Monthly Premium Membership" required> Monthly Premium Membership</label>
-                        <label><input type="radio" name="Access Model" value="Pay-as-you-play / Court Rentals"> Pay-as-you-play / Court Rentals</label>
-                        <label><input type="radio" name="Access Model" value="Community-subsidized drop-in"> Community-subsidized drop-in</label>
+                        <label style="font-weight: 600; text-transform: uppercase; font-size: 0.85rem; letter-spacing: 0.02em; line-height: 1.4;">How difficult is it for you to regularly book the amount of hours you'd like to play?</label>
+                        <label><input type="radio" name="Booking Difficulty" value="1" required> 1 — Not difficult</label>
+                        <label><input type="radio" name="Booking Difficulty" value="2"> 2</label>
+                        <label><input type="radio" name="Booking Difficulty" value="3"> 3</label>
+                        <label><input type="radio" name="Booking Difficulty" value="4"> 4</label>
+                        <label><input type="radio" name="Booking Difficulty" value="5"> 5 — Very difficult</label>
+                    </div>
+                    <div class="form-group radio-group">
+                        <label style="font-weight: 600; text-transform: uppercase; font-size: 0.85rem; letter-spacing: 0.02em; line-height: 1.4;">How interested would you be in booking court time at a different facility than you currently do, if one was available?</label>
+                        <label><input type="radio" name="Facility Interest" value="1" required> 1 — Not interested</label>
+                        <label><input type="radio" name="Facility Interest" value="2"> 2</label>
+                        <label><input type="radio" name="Facility Interest" value="3"> 3</label>
+                        <label><input type="radio" name="Facility Interest" value="4"> 4</label>
+                        <label><input type="radio" name="Facility Interest" value="5"> 5 — Very interested</label>
+                    </div>
+                    <div class="form-group radio-group">
+                        <label style="font-weight: 600; text-transform: uppercase; font-size: 0.85rem; letter-spacing: 0.02em;">How far would you drive to play pickleball regularly?</label>
+                        <label><input type="radio" name="Drive Distance" value="Less than 15 minutes" required> Less than 15 minutes</label>
+                        <label><input type="radio" name="Drive Distance" value="15 - 30 minutes"> 15 - 30 minutes</label>
+                        <label><input type="radio" name="Drive Distance" value="30 - 45 minutes"> 30 - 45 minutes</label>
+                        <label><input type="radio" name="Drive Distance" value="45+ minutes"> 45+ minutes</label>
+                    </div>
+                    <div class="form-group">
+                        <label>Leave us a note on your experience playing pickleball in Ottawa</label>
+                        <p style="font-size: 0.75rem; color: var(--text-body-muted); margin-top: -0.25rem;">(Optional)</p>
+                        <textarea name="Experience Note" rows="3" style="width: 100%; padding: 0.875rem; border: 1px solid var(--border-color); border-radius: 2px; font-size: 1rem; background-color: var(--cream); font-family: inherit; resize: vertical;"></textarea>
                     </div>
                     <div class="form-group">
                         <label>Name</label>
@@ -192,25 +222,18 @@
                 <form onsubmit="submitForm(event)">
                     <input type="hidden" name="form_type" value="Investor">
                     <div class="form-group radio-group">
-                        <label style="font-weight: 600; text-transform: uppercase; font-size: 0.85rem; letter-spacing: 0.02em;">What is your primary interest in indoor pickleball infrastructure?</label>
-                        <label><input type="radio" name="Strategic Interest" value="Direct Equity Investment" required> Direct Equity Investment</label>
-                        <label><input type="radio" name="Strategic Interest" value="Real Estate / Infrastructure Backing"> Real Estate / Infrastructure Backing</label>
-                        <label><input type="radio" name="Strategic Interest" value="Corporate Naming Rights / Sponsorship"> Corporate Naming Rights / Sponsorship</label>
+                        <label style="font-weight: 600; text-transform: uppercase; font-size: 0.85rem; letter-spacing: 0.02em;">What type of investor are you?</label>
+                        <label><input type="radio" name="Investor Type" value="Private equity / investment fund" required> Private equity / investment fund</label>
+                        <label><input type="radio" name="Investor Type" value="Family office"> Family office</label>
+                        <label><input type="radio" name="Investor Type" value="REIT / real estate"> REIT / real estate</label>
+                        <label><input type="radio" name="Investor Type" value="Developer"> Developer</label>
+                        <label><input type="radio" name="Investor Type" value="High-net-worth individual / angel"> High-net-worth individual / angel</label>
+                        <label><input type="radio" name="Investor Type" value="Institutional (pension, insurance, etc.)"> Institutional (pension, insurance, etc.)</label>
+                        <label><input type="radio" name="Investor Type" value="Other"> Other</label>
                     </div>
                     <div class="form-group">
-                        <label>What is your ideal capital deployment timeframe?</label>
-                        <select name="Timeframe" required>
-                            <option value="">Select timeframe...</option>
-                            <option>Immediate (0-6 months)</option>
-                            <option>Short-Term (6-12 months)</option>
-                            <option>Long-Term (1-3 years)</option>
-                        </select>
-                    </div>
-                    <div class="form-group radio-group">
-                        <label style="font-weight: 600; text-transform: uppercase; font-size: 0.85rem; letter-spacing: 0.02em;">What scale of project aligns with your mandate?</label>
-                        <label><input type="radio" name="Project Scale" value="Single neighborhood facility" required> Single neighborhood facility (Adaptive reuse)</label>
-                        <label><input type="radio" name="Project Scale" value="Large-scale regional complex"> Large-scale regional complex (New build)</label>
-                        <label><input type="radio" name="Project Scale" value="Programmatic/League sponsorships"> Programmatic/League sponsorships</label>
+                        <label>Tell us about yourself and what you're looking for.</label>
+                        <textarea name="About" rows="2" required style="width: 100%; padding: 0.875rem; border: 1px solid var(--border-color); border-radius: 2px; font-size: 1rem; background-color: var(--cream); font-family: inherit; resize: vertical;"></textarea>
                     </div>
                     <div class="form-group">
                         <label>Name</label>
@@ -242,7 +265,6 @@
     <section id="problem" class="stats">
         <div class="stats-header">
             <h2>The Reality Check</h2>
-            <p>Mapping the gap between exponential sporting demand and available winter resources.</p>
         </div>
         <div class="stats-grid">
             <div class="stat-card">
@@ -250,12 +272,12 @@
                 <p><strong>YoY Growth</strong><br>Pickleball maintains its position as the fastest-growing sport in North America, rapidly outpacing municipal planning capabilities.</p>
             </div>
             <div class="stat-card">
-                <div class="stat-number">6</div>
-                <p><strong>Months of Frozen Courts</strong><br>Outdoor infrastructure is rendered entirely unusable for half the year, severely bottlenecking access and stalling player progression.</p>
+                <div class="stat-number">50<span>%</span></div>
+                <p><strong>Year-Round Outdoor Court Availability</strong><br>Outdoor courts are only usable for half the year, leaving players without access through the winter.</p>
             </div>
             <div class="stat-card">
-                <div class="stat-number">1</div>
-                <p><strong>Facility in 10 Years</strong><br>The city's current master plan only accounts for a single new public indoor recreation complex over the next decade.</p>
+                <div class="stat-number">65,400</div>
+                <p><strong>Ottawa Residents Play Pickleball Annually</strong><br>This is roughly ~6.5% of the city population.</p>
             </div>
         </div>
     </section>
@@ -263,7 +285,7 @@
     <section id="solution" class="coalition">
         <div class="coalition-content">
             <h2>Collaborative Architecture</h2>
-            <p>Standard municipal funding cannot shoulder this deficit alone. The solution requires <strong>strategic alliances</strong> and the adaptive reuse of existing commercial real estate. By matching private capital and underutilized commercial footprints with localized player demand, Polar Pickleball is bypassing bureaucratic delays to collaboratively engineer the winter infrastructure Ottawa requires.</p>
+            <p>Standard municipal funding cannot shoulder this deficit alone. The solution requires <strong>strategic alliances</strong>. Please tell us how you fit in.</p>
         </div>
     </section>
 
@@ -271,11 +293,11 @@
         <div class="footer-grid">
             <div class="footer-col">
                 <h4>Polar Pickleball</h4>
-                <p style="font-size: 0.875rem; color: #888;">Engineering Ottawa's indoor sports infrastructure through strategic private coalition.</p>
+                <p style="font-size: 0.875rem; color: var(--text-muted);">Driving Ottawa's indoor sports infrastructure through strategic private coalition.</p>
             </div>
             <div class="footer-col">
                 <h4>Contact</h4>
-                <a href="mailto:strategy@polarpickleball.ca">strategy@polarpickleball.ca</a>
+                <a href="mailto:info@polarpickleball.ca">info@polarpickleball.ca</a>
                 <a href="#problem">Data & Research</a>
             </div>
             <div class="footer-col">
@@ -295,7 +317,7 @@
 
     <script>
         // Set your published Google Apps Script Web App URL here
-        const GAS_WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbymJ9-WJUQNsTEjx-G6MRDQ5uaN1cWQ7i_Amvo2GZuCy4fSibW_Hz8ET74-3AmIoZOS/exec';
+        const GAS_WEB_APP_URL = 'YOUR_GOOGLE_APPS_SCRIPT_WEB_APP_URL';
 
         function showBranch(branchId) {
             const branches = document.querySelectorAll('.survey-branch');
